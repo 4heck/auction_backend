@@ -1,0 +1,15 @@
+version: '3.0'
+
+services:
+  db:
+    image: postgres:12.0-alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=auction
+      - POSTGRES_PASSWORD=auction
+      - POSTGRES_DB=auction
+
+  redis:
+    image: redis:buster
+    restart: always
