@@ -5,14 +5,12 @@ from rest_framework import permissions
 from rest_framework.routers import SimpleRouter
 
 from auction.yasg import AuctionSchemaGenerator
+from auction_api.views.auth import RegisterAPIView
 
-# urlpatterns = [
-#     path("direction", DirectionAPIView.as_view()),
-#     path("init/", InitAPIView.as_view()),
-#     path("application/", ApplicationAPIView.as_view()),
-# ]
 
-urlpatterns = []
+urlpatterns = [
+    path("register/", RegisterAPIView.as_view()),
+]
 
 router = SimpleRouter()
 
