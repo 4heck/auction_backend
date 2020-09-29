@@ -1,0 +1,13 @@
+from django.contrib import admin
+
+
+class AuctionModelAdmin(admin.ModelAdmin):
+    list_display = ("title", "get_is_active")
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def get_is_active(self, obj):
+        return obj.is_active
+
+    get_is_active.boolean = True
