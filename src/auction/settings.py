@@ -18,7 +18,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "rest_framework.authtoken",
     "drf_yasg",
 ]
 
@@ -89,3 +88,10 @@ USE_TZ = True
 STATIC_URL = "/static/"
 
 MEDIA_URL_PATH = "/media/"
+
+AUTH_USER_MODEL = "auction_api.User"
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_AUTHENTICATION_CLASSES": ("auction_api.backends.JWTAuthentication",),
+}
