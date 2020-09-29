@@ -25,6 +25,9 @@ class Auction(BaseModel):
             else False
         )
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         verbose_name = "аукцион"
         verbose_name_plural = "аукционы"
