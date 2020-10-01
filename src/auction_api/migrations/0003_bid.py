@@ -8,23 +8,50 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auction_api', '0002_auction'),
+        ("auction_api", "0002_auction"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Bid',
+            name="Bid",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')),
-                ('modified_at', models.DateTimeField(auto_now=True, verbose_name='Дата изменения')),
-                ('price', models.IntegerField(verbose_name='Цена')),
-                ('auction', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='auction_api.auction', verbose_name='Аукцион')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Пользователь')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Дата создания"
+                    ),
+                ),
+                (
+                    "modified_at",
+                    models.DateTimeField(auto_now=True, verbose_name="Дата изменения"),
+                ),
+                ("price", models.IntegerField(verbose_name="Цена")),
+                (
+                    "auction",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="auction_api.auction",
+                        verbose_name="Аукцион",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Пользователь",
+                    ),
+                ),
             ],
-            options={
-                'verbose_name': 'ставка',
-                'verbose_name_plural': 'ставки',
-            },
+            options={"verbose_name": "ставка", "verbose_name_plural": "ставки",},
         ),
     ]

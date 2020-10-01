@@ -2,23 +2,26 @@ from django.urls import path, re_path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
-from rest_framework.routers import SimpleRouter
+
+# from rest_framework.routers import SimpleRouter
 
 from auction.yasg import AuctionSchemaGenerator
 from auction_api.views.registration import RegistrationAPIView
 from auction_api.views.login import LoginAPIView
+from auction_api.views.auction import AuctionAPIView
 
 urlpatterns = [
     re_path(
         r"^registration/?$", RegistrationAPIView.as_view(), name="user_registration"
     ),
     re_path(r"^login/?$", LoginAPIView.as_view(), name="user_login"),
+    re_path(r"^auction/?$", AuctionAPIView.as_view(), name="auction"),
 ]
 
-router = SimpleRouter()
-
-# router.register("country", CountryViewSet, basename="country")
-
+# router = SimpleRouter()
+#
+# router.register("auction", AuctionViewSet, basename="auction")
+#
 # urlpatterns += router.urls
 
 schema_view = get_schema_view(
