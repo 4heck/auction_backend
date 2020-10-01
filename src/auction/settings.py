@@ -93,7 +93,18 @@ AUTH_USER_MODEL = "auction_api.User"
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-    "DEFAULT_AUTHENTICATION_CLASSES": ("auction_api.backends.JWTAuthentication",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+        "auction_api.backends.JWTAuthentication",
+    ),
 }
 
 LOGIN_URL = "/admin/login/"
+
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "api_key": {"type": "apiKey", "in": "header", "name": "Authorization"}
+    },
+    "REFETCH_SCHEMA_WITH_AUTH": True,
+}
