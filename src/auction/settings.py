@@ -108,3 +108,14 @@ SWAGGER_SETTINGS = {
     },
     "REFETCH_SCHEMA_WITH_AUTH": True,
 }
+
+REDIS_HOST = os.environ.get("REDIS_HOST", "0.0.0.0")
+REDIS_PORT = 6379
+CELERY_BROKER_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}/3"
+
+EMAIL_FROM_EMAIL = os.environ.get("EMAIL_FROM_EMAIL", "john@example.com")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "foobar")
+EMAIL_HOST = os.environ.get("EMAIL_HOST", "smtp.yandex.ru")
+EMAIL_PORT = 465
+EMAIL_HOST_USER = EMAIL_FROM_EMAIL
+EMAIL_USE_SSL = True

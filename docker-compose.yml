@@ -13,3 +13,5 @@ services:
   redis:
     image: redis:buster
     restart: always
+    ports:
+    - 6379:6379
