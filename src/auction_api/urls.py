@@ -9,6 +9,7 @@ from auction.yasg import AuctionSchemaGenerator
 from auction_api.views.registration import RegistrationAPIView
 from auction_api.views.login import LoginAPIView
 from auction_api.views.auction import AuctionAPIView
+from auction_api.views.bid import BidAPIView
 
 urlpatterns = [
     re_path(
@@ -16,6 +17,7 @@ urlpatterns = [
     ),
     re_path(r"^login/?$", LoginAPIView.as_view(), name="user_login"),
     re_path(r"^auction/?$", AuctionAPIView.as_view(), name="auction"),
+    re_path(r"^bid/?$", BidAPIView.as_view(), name="bid"),
 ]
 
 # router = SimpleRouter()
