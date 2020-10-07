@@ -1,7 +1,7 @@
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -25,27 +25,9 @@ class BidAPIView(GenericAPIView):
 
     @swagger_auto_schema(
         manual_parameters=[
-            openapi.Parameter(name="all", in_="query", type=openapi.TYPE_BOOLEAN),
-            openapi.Parameter(
-                name="only_active", in_="query", type=openapi.TYPE_BOOLEAN
-            ),
-            openapi.Parameter(
-                name="only_closed", in_="query", type=openapi.TYPE_BOOLEAN
-            ),
+            openapi.Parameter(name="bid_id", in_="query", type=openapi.TYPE_INTEGER),
         ]
     )
     def get(self, request):
-        if len(request.query_params) > 1:
-            return Response(
-                "Using more than one parameter is not allowed",
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        if request.query_params.get("only_active") == "true":
-            self.queryset = self.get_queryset().is_active()
-        elif request.query_params.get("only_closed") == "true":
-            self.queryset = self.get_queryset().is_closed()
-
-        return Response(
-            self.serializer_class(instance=self.get_queryset(), many=True).data
-        )
+        bid = get_object_or_404(Bid, pk=request.query_params.get("bid_id"))
+        return Response(self.serializer_class(instance=bid).data)
