@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 from auction_api.models import Auction
 from auction_api.serializers.auction import AuctionSerializer
-from auction_api.services.email import send_auction_notifications
+from auction_api.services.email import send_new_auction_notifications
 
 
 class AuctionAPIView(GenericAPIView):
@@ -19,7 +19,7 @@ class AuctionAPIView(GenericAPIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         auction_instance = serializer.save()
-        send_auction_notifications(auction_instance)
+        send_new_auction_notifications(auction_instance)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 

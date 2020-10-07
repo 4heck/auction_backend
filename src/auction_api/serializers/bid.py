@@ -13,7 +13,7 @@ class BidSerializer(serializers.ModelSerializer):
         if not validate_bid_price(
             price=attrs.get("price"), auction=attrs.get("auction")
         ):
-            raise serializers.ValidationError("Цена ставки невалидна")
+            raise serializers.ValidationError({"price": "Цена ставки невалидна"})
         if not validate_bid_user(
             auction=attrs.get("auction"), customer=attrs.get("user")
         ):
