@@ -27,7 +27,7 @@ class BidSerializer(serializers.ModelSerializer):
             auction=attrs.get("auction"), customer=attrs.get("user")
         ):
             raise serializers.ValidationError(
-                "Данный пользователь не может делать ставку"
+                {"user": "Данный пользователь не может делать ставку"}
             )
         return attrs
 

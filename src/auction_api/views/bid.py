@@ -29,5 +29,8 @@ class BidAPIView(GenericAPIView):
         ]
     )
     def get(self, request):
-        bid = get_object_or_404(Bid, pk=request.query_params.get("bid_id"))
-        return Response(self.serializer_class(instance=bid).data)
+        return Response(
+            self.serializer_class(
+                instance=get_object_or_404(Bid, pk=request.query_params.get("bid_id"))
+            ).data
+        )

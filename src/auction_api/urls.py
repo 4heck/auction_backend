@@ -3,8 +3,6 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 
-# from rest_framework.routers import SimpleRouter
-
 from auction.yasg import AuctionSchemaGenerator
 from auction_api.views.registration import RegistrationAPIView
 from auction_api.views.login import LoginAPIView
@@ -19,12 +17,6 @@ urlpatterns = [
     re_path(r"^auction/?$", AuctionAPIView.as_view(), name="auction"),
     re_path(r"^bid/?$", BidAPIView.as_view(), name="bid"),
 ]
-
-# router = SimpleRouter()
-#
-# router.register("auction", AuctionViewSet, basename="auction")
-#
-# urlpatterns += router.urls
 
 schema_view = get_schema_view(
     openapi.Info(title="Auction API", default_version="v1",),

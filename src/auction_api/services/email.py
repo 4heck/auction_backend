@@ -19,7 +19,7 @@ def send_new_auction_notifications(auction_instance: Auction):
     )
 
     return send_email(
-        email_list=_get_new_auction_email_list(),
+        email_list=_get_new_auction_email_list(auction_instance),
         subject=new_auction_subject,
         body=new_auction_text,
     )
@@ -29,7 +29,7 @@ def _get_new_auction_email_list(auction_instance: Auction):
     email_list = []
 
     for recipient in User.objects.all().exclude(pk=auction_instance.seller.pk):
-        email_list.append(recipient.user.email)
+        email_list.append(recipient.email)
 
     return list(set(email_list))
 
